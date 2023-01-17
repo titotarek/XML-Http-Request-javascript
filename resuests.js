@@ -1,4 +1,4 @@
-// First way for make XMLHttpRequest
+// First way for make XMLHttpRequest with Get method
 
 let request = new XMLHttpRequest();
 
@@ -22,7 +22,7 @@ request.onload = function () {
 	}
 };
 
-// second way for make XMLHttpRequest
+// second way for make XMLHttpRequest with Get method
 
 //  GET  XMLHttpRequest
 function readPost() {
