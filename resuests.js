@@ -1,26 +1,26 @@
 // First way for make XMLHttpRequest with Get method
 
-let request = new XMLHttpRequest();
+// let request = new XMLHttpRequest();
 
-request.open("GET", "https://jsonplaceholder.typicode.com/posts");
-// request.responseType = "json"
-request.send();
-console.log(request);
-request.onload = function () {
-	if (request.readyState === 4 && request.status === 200) {
-		console.log(typeof this.responseText);
-		let jsObj = JSON.parse(this.responseText);
-		// console.log( typeof jsObj)
-		for (let i = 0; i < jsObj.length; i++) {
-			let div = document.createElement("div");
-			let title = document.createElement("h1");
-			let tit = document.createTextNode(jsObj[i].title);
-			title.appendChild(tit);
-			div.appendChild(title);
-			document.body.append(div);
-		}
-	}
-};
+// request.open("GET", "https://jsonplaceholder.typicode.com/posts");
+// // request.responseType = "json"
+// request.send();
+// console.log(request);
+// request.onload = function () {
+// 	if (request.readyState === 4 && request.status === 200) {
+// 		console.log(typeof this.responseText);
+// 		let jsObj = JSON.parse(this.responseText);
+// 		// console.log( typeof jsObj)
+// 		for (let i = 0; i < jsObj.length; i++) {
+// 			let div = document.createElement("div");
+// 			let title = document.createElement("h1");
+// 			let tit = document.createTextNode(jsObj[i].title);
+// 			title.appendChild(tit);
+// 			div.appendChild(title);
+// 			document.body.append(div);
+// 		}
+// 	}
+// };
 
 // second way for make XMLHttpRequest with Get method
 
@@ -151,3 +151,30 @@ function deleteUserPost() {
 }
 
 deleteUserPost();
+
+
+// get Post With Quarry Filter  user
+function getPostWithQuarryFilter() {
+	let request = new XMLHttpRequest();
+	request.open("GET", "https://jsonplaceholder.typicode.com/posts?userId=1");
+	request.responseType = "json";
+	request.setRequestHeader("Accept", "application/json");
+	request.setRequestHeader("Content-type", "application/json");
+
+	request.send();
+	request.onload = function () {
+		if (request.status >= 200 && request.status < 300) {
+			let posts = request.response;
+			for(post of posts){
+				document.getElementById('title').innerHTML += `<h1>${post.title}</h1>` 
+			}
+		
+			console.log(request.status);
+			console.log("the get Post With Quarry Filter is successful");
+		} else {
+			console.log("request fall");
+		}
+	};
+}
+
+getPostWithQuarryFilter();
