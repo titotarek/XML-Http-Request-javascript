@@ -135,13 +135,8 @@ function deleteUserPost() {
 	request.responseType = "json";
 	request.setRequestHeader("Accept", "application/json");
 	request.setRequestHeader("Content-type", "application/json");
-	let bodyParams = `
-    {
-        "title":"Hello Vue3",
-        "body": "I Love Programming and JavaScript",
-        "userId": 1
-      }`;
-	request.send(bodyParams);
+
+	request.send();
 	request.onload = function () {
 		if (request.status >= 200 && request.status < 300) {
 			let response = request.response;
